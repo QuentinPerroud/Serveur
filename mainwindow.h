@@ -22,16 +22,19 @@ public:
 
    void deconnexion(QString s1);
 
-   void  Echange(QString s1 ,QString s2,QString s3);
+   void  echange(QString s1 ,QString s2,QString s3);
 
 private slots:
      void readPendingDatagrams();
+
+     void on_clear_clicked();
 
 private:
     Ui::MainWindow *ui;
     QUdpSocket* soc;
     QMap<QString,QHostAddress> tbl;
     QMap<QString,QHostAddress>::iterator it;
+     QHostAddress sender  ;
 };
 
 #endif // MAINWINDOW_H

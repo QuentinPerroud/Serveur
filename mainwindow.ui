@@ -17,9 +17,32 @@
    <widget class="QTextEdit" name="Affichage">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>30</y>
+      <x>180</x>
+      <y>10</y>
       <width>251</width>
+      <height>361</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clear">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>380</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="listepseudo">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>104</width>
       <height>361</height>
      </rect>
     </property>

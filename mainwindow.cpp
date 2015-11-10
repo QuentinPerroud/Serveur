@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         connect(soc, SIGNAL(readyRead()),
                 this, SLOT(readPendingDatagrams()));
+
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +24,7 @@ void MainWindow::readPendingDatagrams()
    while (soc->hasPendingDatagrams()) {
        QByteArray datagram;
        datagram.resize(soc->pendingDatagramSize());
-       QHostAddress sender  ;
+
        quint16 senderPort ;
        soc->readDatagram(datagram.data(), datagram.size(),
                                &sender, &senderPort);
@@ -33,6 +34,8 @@ void MainWindow::readPendingDatagrams()
        QString eme3QString;
        QDataStream ds(datagram);
        ds >> er1QString >> eme2QString >> eme3QString;
+
+
 
        //traitement de la connexion
         if (er1QString=="")
@@ -45,7 +48,7 @@ void MainWindow::readPendingDatagrams()
         }
         else
         {
-              Echange(er1QString,eme2QString,eme3QString);
+              echange(er1QString,eme2QString,eme3QString);
         }
 
 
@@ -55,9 +58,11 @@ void MainWindow::readPendingDatagrams()
 
 void MainWindow::connexion(QString s2)
 {
-    for(it = tbl.begin();it!=tbl.end();it++)
-    {
-        if(s2==it.key()){
+
+
+
+        if(tbl.find(s2)!=tbl.end())
+        {
 
             QByteArray ba;
             QDataStream ds2(&ba,QIODevice::WriteOnly);
@@ -74,7 +79,7 @@ void MainWindow::connexion(QString s2)
             soc->writeDatagram(ba,sender,1234);
         }
    }
-}
+
 
 void MainWindow::deconnexion(QString s1)
 {
@@ -84,4 +89,10 @@ void MainWindow::deconnexion(QString s1)
 void MainWindow::echange(QString s1 ,QString s2,QString s3)
 {
 
+}
+
+void MainWindow::on_clear_clicked()
+{
+
+    ui->listepseudo->clear();
 }
