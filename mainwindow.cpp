@@ -61,7 +61,7 @@ void MainWindow::connexion(QString s2)
 
 
 
-        if(tbl.find(s2)!=tbl.end())
+        if(tbl.find(s2)!= tbl.end())
         {
 
             QByteArray ba;
@@ -88,7 +88,16 @@ void MainWindow::deconnexion(QString s1)
 
 void MainWindow::echange(QString s1 ,QString s2,QString s3)
 {
-
+        if(tbl.find(s1)!= tbl.end())
+        {
+             if(tbl.find(s2)!= tbl.end())
+             {
+                 QByteArray ba;
+                 QDataStream ds3(&ba,QIODevice::WriteOnly);
+                 ds3 << QString (s1 + " : " + s3)  ;
+                 soc->writeDatagram(ba,tbl[s2],1234);
+             }
+        }
 }
 
 void MainWindow::on_clear_clicked()
